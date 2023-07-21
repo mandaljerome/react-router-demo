@@ -30,6 +30,10 @@ export const addEventAction = async ({ request, params }) => {
       body: JSON.stringify(newEvent),
    })
 
+   if (response.status === 422) {
+      return response
+   }
+
    if (!response.ok) {
       throw json({ message: 'Cant submit the data' }, { status: 500 })
    } else {
